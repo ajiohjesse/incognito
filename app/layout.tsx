@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { Inclusive_Sans } from 'next/font/google';
 import Header from './components/header';
 import './globals.css';
 
-const font = Poppins({
+const font = Inclusive_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400'],
 });
 
 export const metadata: Metadata = {
