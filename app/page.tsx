@@ -72,8 +72,8 @@ const GetStarted = ({
           <DialogTitle>Create Account</DialogTitle>
           <DialogDescription>
             Enter a password and we&#39;ll create an
-            anonymous account for you with. If you already
-            have this an account, you can{' '}
+            anonymous account for you. If you already
+            have an account, you can{' '}
             <RetrieveMesseges
               label={
                 <button className="text-secondary">
