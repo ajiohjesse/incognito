@@ -2,8 +2,7 @@ import { cn } from '@/lib/utils';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
-import { Drama } from 'lucide-react';
-import { motion } from 'framer-motion';
+import Header from '@/components/header';
 
 const font = Poppins({
   subsets: ['latin'],
@@ -23,14 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('dark', font.className)}>
-        <header className="sticky top-0 backdrop-blur-xl z-[10]">
-          <div className="container py-4">
-            <p className="text-2xl flex items-center gap-2">
-              <Drama className="text-primary" />
-              Incognito
-            </p>
-          </div>
-        </header>
+        <Header />
         {children}
         <footer>
           <div className="container py-4">
