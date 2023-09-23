@@ -22,8 +22,9 @@ export default function Home() {
               <Typewriter
                 words={['Send', 'Recieve']}
                 loop
+                delaySpeed={3000}
                 cursorStyle="_"
-                typeSpeed={100}
+                typeSpeed={200}
                 deleteSpeed={50}
               />
             </span>{' '}

@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('dark', font.className)}>
-        <header className="sticky top-0 backdrop-blur-xl">
+        <header className="sticky top-0 backdrop-blur-xl z-[10]">
           <div className="container py-4">
             <p className="text-2xl flex items-center gap-2">
               <Drama className="text-primary" />
