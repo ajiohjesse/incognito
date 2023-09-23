@@ -1,12 +1,7 @@
 'use client';
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from '@/components/ui/card';
 import { Variants, motion } from 'framer-motion';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 export const containerVariants: Variants = {
   hidden: { opacity: 1 },
@@ -31,26 +26,22 @@ const InfoCards = () => {
   return (
     <motion.div
       variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      className="container flex flex-wrap gap-8"
+      initial='hidden'
+      whileInView='visible'
+      className='container flex flex-wrap gap-8'
     >
       {HERO_INFO.map(({ title, content }, index) => (
         <motion.div
           key={index}
           whileHover={{ scale: 1.05 }}
           variants={itemVariants}
-          className="flex-1 min-w-[240px]"
+          className='min-w-[240px] flex-1'
         >
-          <Card className="h-full">
+          <Card className='h-full'>
             <CardHeader>
-              <CardTitle className="text-lg">
-                {title}
-              </CardTitle>
+              <CardTitle className='text-lg'>{title}</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-muted">
-              {content}
-            </CardContent>
+            <CardContent className='text-sm text-muted'>{content}</CardContent>
           </Card>
         </motion.div>
       ))}
