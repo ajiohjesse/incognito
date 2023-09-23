@@ -6,12 +6,13 @@ import {
   TabsTrigger,
 } from '../components/ui/tabs';
 import Messages from './messages';
+import Profile from './profile';
 import Threads from './threads';
 
 const AccountPage = () => {
   return (
     <main>
-      <div className='container grid gap-20 py-4 sm:py-8 md:grid-cols-[1fr,300px]'>
+      <div className='container grid gap-6 py-4 sm:py-8 lg:grid-cols-[1fr,400px] lg:gap-16'>
         <Tabs defaultValue='threads' className=''>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='threads'>
@@ -36,7 +37,7 @@ const AccountPage = () => {
           </TabsContent>
         </Tabs>
 
-        <div className='sticky top-[80px] h-fit'>profile info</div>
+        <Profile />
       </div>
     </main>
   );

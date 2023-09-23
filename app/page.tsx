@@ -7,9 +7,9 @@ import Typewriter from './components/ui/typewriter';
 export default function Home() {
   return (
     <main className='w-full bg-background'>
-      <section className='container max-w-[400px] space-y-8 py-16 sm:max-w-[600px] md:max-w-[700px] md:space-y-12'>
+      <section className='container max-w-[400px] space-y-8 py-16 sm:max-w-[600px] md:max-w-[750px] md:space-y-12'>
         <div className='space-y-4 text-center md:space-y-8'>
-          <h1 className='text-3xl font-semibold leading-normal transition duration-700 animate-in zoom-in-75 slide-in-from-top-10 sm:text-4xl sm:leading-relaxed md:text-5xl md:leading-[4rem]'>
+          <h1 className='text-4xl font-semibold transition duration-700 animate-in zoom-in-75 slide-in-from-top-10 sm:text-5xl sm:leading-relaxed md:text-6xl md:leading-[4rem]'>
             <span className='block text-primary'>
               <Typewriter
                 words={['Send', 'Receive']}
