@@ -1,10 +1,6 @@
+import InfoCards from '@/components/hero/info-cards';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from '@/components/ui/card';
+
 import {
   DialogHeader,
   Dialog,
@@ -14,14 +10,24 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import Typewriter from '@/components/ui/typewriter';
 
 export default function Home() {
   return (
     <main className="w-full bg-background">
-      <section className="container py-16 space-y-8 max-w-[400px] sm:max-w-[600px] md:space-y-12">
+      <section className="container py-16 space-y-8 max-w-[400px] sm:max-w-[600px] md:max-w-[700px] md:space-y-12">
         <div className="space-y-4 text-center md:space-y-8">
           <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl leading-normal sm:leading-relaxed md:leading-[4rem]">
-            Send Messages Anonymously
+            <span className="text-primary block">
+              <Typewriter
+                words={['Send', 'Recieve']}
+                loop
+                cursorStyle="_"
+                typeSpeed={100}
+                deleteSpeed={50}
+              />
+            </span>{' '}
+            Messages Anonymously
             <span className="text-primary">.</span>
           </h1>
           <p className="text-muted text-sm md:text-base">
@@ -46,23 +52,7 @@ export default function Home() {
       </section>
 
       <section className="pb-20 md:pt-10">
-        <div className="container flex flex-wrap gap-8">
-          {HERO_INFO.map(({ title, content }, index) => (
-            <Card
-              className="flex-1 min-w-[240px]"
-              key={index}
-            >
-              <CardHeader>
-                <CardTitle className="text-lg">
-                  {title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted">
-                {content}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <InfoCards />
       </section>
     </main>
   );
@@ -144,30 +134,3 @@ const RetrieveMesseges = ({
     </Dialog>
   );
 };
-
-const HERO_INFO: { title: string; content: string }[] = [
-  {
-    title: 'Your Identity, Your Secret',
-    content: `Incognito ensures your identity remains hidden. 
-      Chat, share, and connect without revealing your 
-      personal information. Your secrets are safe with us.`,
-  },
-  {
-    title: 'Real Conversations, Real Connections',
-    content: `Engage in genuine conversations with 
-    people from around the world. Discover new friends, 
-    share stories, and explore the depths of human connection.`,
-  },
-  {
-    title: 'Endless Possibilities',
-    content: `Whether it's seeking advice, sharing your thoughts, 
-    or making new friends, Incognito opens the door to endless 
-    possibilities. You're in control of your conversations.`,
-  },
-  {
-    title: 'Join the Incognito Community Today',
-    content: `Unleash your voice and connect with others like never before. 
-    Join Incognito now and start your journey to anonymous conversations 
-    and authentic connections.`,
-  },
-];
