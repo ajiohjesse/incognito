@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inclusive_Sans } from 'next/font/google';
 import Header from './components/header';
+import MessageButton from './components/message-button';
 import './globals.css';
 
 const font = Inclusive_Sans({
@@ -51,6 +52,8 @@ export default function RootLayout({
             <p className='text-center text-sm text-muted'>&copy;2023. Rehx.</p>
           </div>
         </footer>
+
+        <MessageButton />
       </body>
     </html>
   );

@@ -12,7 +12,7 @@ import {
 
 const ShareButtons = () => {
   return (
-    <div>
+    <div className='flex items-center gap-4'>
       <FacebookShareButton
         blankTarget
         url={'https://github.com/next-share'}

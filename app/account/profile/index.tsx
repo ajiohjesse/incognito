@@ -49,6 +49,7 @@ const Profile = () => {
                 type='password'
                 placeholder='Enter new password'
                 id='password'
+                autoComplete='off'
               />
             </div>
 

@@ -18,10 +18,13 @@ const AccountPage = () => {
           <h2 className='mb-2 text-3xl font-semibold'>
             Welcome Anonymous 6567
           </h2>
-          <p className='text-muted'>You&#39;ve gone incognito!</p>
+          <p className='mb-2 text-lg text-muted'>You&#39;ve gone incognito!</p>
+          <p className='text-xs text-muted'>
+            Share your link below to receive messages
+          </p>
           <div className='mt-6'>
             <p className='w-full break-words rounded-md bg-black/30 px-4 py-2 text-sm md:w-fit'>
-              http://incognito.com.ng/message/6567
+              http://incognito.com.ng/send?user=5346
             </p>
 
             <div className='mt-4 flex items-center justify-center gap-4 md:justify-start'>
