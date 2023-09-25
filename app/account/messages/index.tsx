@@ -38,7 +38,7 @@ const Messages = () => {
               </CardContent>
               <CardFooter>
                 <Button asChild variant='outline' size='sm'>
-                  <Link href='/'>Read</Link>
+                  <Link href='/account/messages/id'>Read</Link>
                 </Button>
               </CardFooter>
             </Card>

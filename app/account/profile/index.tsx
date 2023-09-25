@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 const Profile = () => {
   const [isProfileOpen, setProfileOpen] = useState(false);
+  const [isEditPassword, setIsEditPassword] = useState(false);
 
   return (
     <>
@@ -42,21 +43,40 @@ const Profile = () => {
             <p>Hello, Anonymous user.</p>
           </div>
 
-          <form className='grid h-fit gap-4'>
-            <div className='grid gap-2'>
-              <label htmlFor='password'>Change Password</label>
-              <Input
-                type='password'
-                placeholder='Enter new password'
-                id='password'
-                autoComplete='off'
-              />
-            </div>
+          {isEditPassword ? (
+            <form className='grid h-fit gap-4 animate-in zoom-in-75'>
+              <div className='grid gap-2'>
+                <label htmlFor='password'>Change Password</label>
+                <Input
+                  type='password'
+                  placeholder='Enter new password'
+                  id='password'
+                  autoComplete='off'
+                />
+              </div>
 
-            <Button type='button' size='sm' className='mt-4'>
-              Submit
+              <Button type='submit' size='sm' className='my-2'>
+                Submit
+              </Button>
+              <Button
+                variant='outline'
+                type='reset'
+                size='sm'
+                className='mb-4'
+                onClick={() => setIsEditPassword(false)}
+              >
+                Cancel
+              </Button>
+            </form>
+          ) : (
+            <Button
+              onClick={() => setIsEditPassword(true)}
+              size='sm'
+              className='w-full'
+            >
+              Edit Password
             </Button>
-          </form>
+          )}
         </div>
       </div>
     </>

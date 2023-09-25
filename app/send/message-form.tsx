@@ -56,7 +56,7 @@ const MessageForm = () => {
         <Alert variant='info' className='mt-4 text-sm'>
           <InfoIcon className='h-4 w-4' />
           <AlertDescription>
-            Threads allow both you and the reciepient to reply to anonymous
+            Threads allow both you and the recipient to reply to anonymous
             messages. (You must be logged in)
           </AlertDescription>
         </Alert>
