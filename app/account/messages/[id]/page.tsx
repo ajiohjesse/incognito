@@ -20,8 +20,6 @@ const MessagePage = () => {
         <BackButton />
       </div>
       <div className='container max-w-[700px] py-2'>
-        <h2 className='mb-6 text-3xl font-bold'>Message</h2>
-
         <Card>
           <CardHeader>
             <CardTitle>Anonymous 7hd6</CardTitle>

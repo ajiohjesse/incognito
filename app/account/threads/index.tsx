@@ -43,9 +43,11 @@ const Threads = () => {
                 magni dolorum atque maiores...
               </CardContent>
               <CardFooter>
-                <Button asChild variant='outline' size='sm'>
-                  <Link href='/'>Open</Link>
-                </Button>
+                <div className='flex w-full justify-end'>
+                  <Button asChild variant='outline' size='sm'>
+                    <Link href='/account/threads/id'>Open</Link>
+                  </Button>
+                </div>
               </CardFooter>
             </Card>
           ))}

@@ -37,9 +37,11 @@ const Messages = () => {
                 magni dolorum atque maiores...
               </CardContent>
               <CardFooter>
-                <Button asChild variant='outline' size='sm'>
-                  <Link href='/account/messages/id'>Read</Link>
-                </Button>
+                <div className='flex w-full justify-end'>
+                  <Button asChild variant='outline' size='sm'>
+                    <Link href='/account/messages/id'>Read</Link>
+                  </Button>
+                </div>
               </CardFooter>
             </Card>
           ))}

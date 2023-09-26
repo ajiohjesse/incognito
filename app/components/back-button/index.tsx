@@ -8,7 +8,7 @@ const BackButton = () => {
 
   return (
     <button className='flex items-center' onClick={() => router.back()}>
-      <ChevronLeft />
+      <ChevronLeft className='h-4 w-4' />
       Back
     </button>
   );

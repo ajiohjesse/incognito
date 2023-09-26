@@ -6,8 +6,12 @@ import { usePathname } from 'next/navigation';
 
 const MessageButton = () => {
   const path = usePathname();
+  const hidden =
+    path.includes('/send') ||
+    path.includes('/account/threads') ||
+    path.includes('/account/messages');
 
-  if (path === '/send') return null;
+  if (hidden) return null;
 
   return (
     <Link
