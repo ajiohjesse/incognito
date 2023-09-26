@@ -20,13 +20,15 @@ const ThreadPage = () => {
 
   return (
     <main>
-      <div className='container pb-4 pt-2'>
-        <BackButton />
-      </div>
+      <div className='sticky top-[60px] z-10 bg-background py-2'>
+        <div className='container pb-4'>
+          <BackButton />
+        </div>
 
-      <div className='container mb-4 flex items-center justify-between gap-4 md:mb-8'>
-        <h2 className='text-lg font-bold'>Thread hr667</h2>
-        <ReplyThreadButton />
+        <div className='container mb-4 flex items-center justify-between gap-4 md:mb-8'>
+          <h2 className='text-lg font-bold'>Thread hr667</h2>
+          <ReplyThreadButton />
+        </div>
       </div>
 
       <ScrollArea className='container mb-12 h-[calc(100dvh-200px)] rounded-md bg-black/40 '>

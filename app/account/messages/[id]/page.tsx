@@ -25,7 +25,7 @@ const MessagePage = () => {
             <CardTitle>Anonymous 7hd6</CardTitle>
             <CardDescription>Sent: 12th Oct, 23</CardDescription>
           </CardHeader>
-          <CardContent className='text-muted'>
+          <CardContent className='text-gray-300'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
             laboriosam dignissimos nam dolorum neque at inventore, asperiores
             quasi? Eius magni, iusto laboriosam quod qui, deserunt excepturi
