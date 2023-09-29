@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inclusive_Sans } from 'next/font/google';
 import Header from './components/header';
 import MessageButton from './components/message-button';
-import ProgressBar from './components/progress-bar';
+import Providers from './components/providers';
 import './globals.css';
 
 const font = Inclusive_Sans({
@@ -46,16 +46,19 @@ export default function RootLayout({
         <link rel='manifest' href='/site.webmanifest' />
       </head>
       <body className={font.className}>
-        <ProgressBar />
-        <Header />
-        {children}
-        <footer>
-          <div className='container py-4'>
-            <p className='text-center text-sm text-muted'>&copy;2023. Rehx.</p>
-          </div>
-        </footer>
+        <Providers>
+          <Header />
+          {children}
+          <footer>
+            <div className='container py-4'>
+              <p className='text-center text-sm text-muted'>
+                &copy;2023. Rehx.
+              </p>
+            </div>
+          </footer>
 
-        <MessageButton />
+          <MessageButton />
+        </Providers>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
+import useCurrentUser from '@/hooks/useCurrentUser';
 import { cn } from '@/lib/utils';
 import { User, X } from 'lucide-react';
 import { useState } from 'react';
@@ -9,6 +10,7 @@ import { useState } from 'react';
 const Profile = () => {
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isEditPassword, setIsEditPassword] = useState(false);
+  const { userId } = useCurrentUser();
 
   return (
     <>
@@ -40,7 +42,7 @@ const Profile = () => {
               <X />
             </button>
             <h3 className='text-2xl font-semibold'>Profile</h3>
-            <p>Hello, Anonymous user.</p>
+            <p>Hello, Anonymous {userId}.</p>
           </div>
 
           {isEditPassword ? (

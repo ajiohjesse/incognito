@@ -14,7 +14,7 @@ import Link from 'next/link';
 const Messages = () => {
   return (
     <div className='space-y-8'>
-      <Alert variant='warning'>
+      <Alert variant='info'>
         <Info className='h-4 w-4' />
         <AlertDescription>
           These are one-off messages. You can&#39;t reply to these

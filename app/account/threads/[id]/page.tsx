@@ -70,7 +70,7 @@ const ThreadPage = () => {
             ))}
         </div>
 
-        <Alert variant='warning' className='my-4 text-sm'>
+        <Alert variant='info' className='mb-4 text-sm'>
           <InfoIcon className='h-4 w-4' />
           <AlertDescription>End of thread</AlertDescription>
         </Alert>
