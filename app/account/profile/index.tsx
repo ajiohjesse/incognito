@@ -10,7 +10,9 @@ import { useState } from 'react';
 const Profile = () => {
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isEditPassword, setIsEditPassword] = useState(false);
-  const { userId } = useCurrentUser();
+  const { user, handleLogout } = useCurrentUser();
+
+  if (!user) return null;
 
   return (
     <>
@@ -42,7 +44,7 @@ const Profile = () => {
               <X />
             </button>
             <h3 className='text-2xl font-semibold'>Profile</h3>
-            <p>Hello, Anonymous {userId}.</p>
+            <p>Hello, Anonymous {user.userId}.</p>
           </div>
 
           {isEditPassword ? (
@@ -79,6 +81,17 @@ const Profile = () => {
               Edit Password
             </Button>
           )}
+
+          <div className='mt-4'>
+            <Button
+              size='sm'
+              className='w-full'
+              variant='outline'
+              onClick={() => handleLogout()}
+            >
+              Logout
+            </Button>
+          </div>
         </div>
       </div>
     </>

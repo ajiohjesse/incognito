@@ -1,6 +1,5 @@
+import Link from 'next/link';
 import InfoCards from './components/hero/info-cards';
-import Login from './components/login';
-import Register from './components/register';
 import { Button } from './components/ui/button';
 import Typewriter from './components/ui/typewriter';
 
@@ -33,8 +32,13 @@ export default function Home() {
         </div>
 
         <div className='grid gap-4 transition duration-700 animate-in zoom-in-75 slide-in-from-top-10 md:grid-cols-2'>
-          <Register label={<Button>Get Started</Button>} />
-          <Login label={<Button variant='outline'>Retrive Messages</Button>} />
+          <Button asChild>
+            <Link href='/auth/register'>Get started</Link>
+          </Button>
+
+          <Button asChild variant='outline'>
+            <Link href='/auth/login'>Retrive Messages</Link>
+          </Button>
         </div>
       </section>
 

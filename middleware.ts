@@ -14,6 +14,12 @@ export async function middleware(request: NextRequest) {
       userCookie.value,
       new TextEncoder().encode(process.env.JWT || ''),
     );
+
+    if (request.nextUrl.pathname.startsWith('/auth')) {
+      return NextResponse.redirect(new URL('/account', request.url), {
+        status: 302,
+      });
+    }
   } catch {
     return NextResponse.redirect(new URL('/', request.url), { status: 302 });
   }
@@ -21,5 +27,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/account/:path*',
+  matcher: ['/account/:path*', '/auth/:path*'],
 };

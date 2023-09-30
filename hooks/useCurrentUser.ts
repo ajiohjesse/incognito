@@ -1,17 +1,20 @@
 import { userStore } from '@/stores/userStore';
+import cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 const useCurrentUser = () => {
   const router = useRouter();
-  const user = useRecoilValue(userStore);
+  const [user, setUser] = useRecoilState(userStore);
 
-  if (!user) {
-    router.replace('/');
-    throw new Error('User is not authenticated');
-  }
+  const handleLogout = (redirectUrl?: string) => {
+    const url = redirectUrl || '/';
+    cookies.remove('userToken');
+    setUser(null);
+    router.push(url);
+  };
 
-  return user;
+  return { user, handleLogout };
 };
 
 export default useCurrentUser;
