@@ -5,23 +5,36 @@ import { NextResponse } from 'next/server';
 export async function middleware(request: NextRequest) {
   const userCookie = request.cookies.get('userToken');
 
-  if (!userCookie) {
-    return NextResponse.redirect(new URL('/', request.url), { status: 302 });
+  if (request.nextUrl.pathname.startsWith('/account')) {
+    if (!userCookie) {
+      return NextResponse.redirect(new URL('/', request.url), { status: 302 });
+    }
+
+    try {
+      await jwtVerify(
+        userCookie.value,
+        new TextEncoder().encode(process.env.JWT || ''),
+      );
+    } catch {
+      return NextResponse.redirect(new URL('/', request.url), { status: 302 });
+    }
   }
 
-  try {
-    await jwtVerify(
-      userCookie.value,
-      new TextEncoder().encode(process.env.JWT || ''),
-    );
+  if (request.nextUrl.pathname.startsWith('/auth')) {
+    if (!userCookie) return;
 
-    if (request.nextUrl.pathname.startsWith('/auth')) {
+    try {
+      await jwtVerify(
+        userCookie.value,
+        new TextEncoder().encode(process.env.JWT || ''),
+      );
+
       return NextResponse.redirect(new URL('/account', request.url), {
         status: 302,
       });
+    } catch {
+      return;
     }
-  } catch {
-    return NextResponse.redirect(new URL('/', request.url), { status: 302 });
   }
 }
 
