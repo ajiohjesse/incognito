@@ -9,7 +9,7 @@ const RegisterPage = () => {
         <p>
           Enter a unique username and password and we&#39;ll create an account
           for you. If you already have an account, you can{' '}
-          <Link href='/auth/register' className='text-primary'>
+          <Link href='/auth/login' className='text-primary'>
             proceed to login.
           </Link>
         </p>
