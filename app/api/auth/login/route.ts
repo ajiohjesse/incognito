@@ -31,7 +31,11 @@ export async function POST(req: Request) {
 
       cookies().set('userToken', token);
 
-      return Response.json({ success: true, message: 'Login successful' });
+      return Response.json({
+        success: true,
+        message: 'Login successful',
+        data: user,
+      });
     } catch (error) {
       return Response.json({
         success: false,
