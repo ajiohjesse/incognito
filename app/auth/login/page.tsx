@@ -3,7 +3,7 @@ import LoginForm from './login-form';
 
 const LoginPage = () => {
   return (
-    <div className='container grid max-w-[500px] gap-6 py-12 md:py-24'>
+    <div className='container grid max-w-[500px] gap-6 py-12'>
       <div className='grid gap-4'>
         <h2 className='text-2xl font-bold md:text-4xl'>Login</h2>
         <p>
