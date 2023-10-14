@@ -7,11 +7,10 @@ const useCurrentUser = () => {
   const router = useRouter();
   const [user, setUser] = useRecoilState(userStore);
 
-  const handleLogout = (redirectUrl?: string) => {
-    const url = redirectUrl || '/';
+  const handleLogout = () => {
     cookies.remove('userToken');
     setUser(null);
-    router.push(url);
+    router.refresh();
   };
 
   return { user, handleLogout };

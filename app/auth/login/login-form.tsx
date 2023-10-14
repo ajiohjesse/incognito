@@ -3,20 +3,18 @@
 import Spinner from '@/app/components/spinner';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
-import useCurrentUser from '@/hooks/useCurrentUser';
 import { useLogin } from '@/network/react-query/auth/hooks';
 import { useState } from 'react';
 
 const LoginForm = () => {
-  const [userId, setUserId] = useState('');
+  const [userName, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const { mutate, isLoading } = useLogin();
-  const user = useCurrentUser();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     mutate({
-      userId,
+      userName,
       password,
     });
   };
@@ -28,7 +26,7 @@ const LoginForm = () => {
         <Input
           placeholder='Enter username'
           id='username'
-          value={userId}
+          value={userName}
           onChange={e => setUserId(e.target.value)}
         />
       </div>
@@ -48,7 +46,7 @@ const LoginForm = () => {
         type='submit'
         size='sm'
         className='mt-4'
-        disabled={!userId || !password || isLoading}
+        disabled={!userName || !password || isLoading}
       >
         {isLoading ? <Spinner className='border-white' /> : 'Login'}
       </Button>

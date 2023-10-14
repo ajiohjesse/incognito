@@ -16,6 +16,8 @@
     --primary: 204 95% 41%;
     --primary-foreground: 210 40% 98%;
 
+    --primary-lighter: 204 95% 41%;
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
@@ -36,7 +38,7 @@
   }
 
   .dark {
-    --background: 203 26% 5%;
+    --background: 203 86% 5%;
     --foreground: 200 6% 90%;
 
     --card: 203 86% 5%;
@@ -48,10 +50,10 @@
     --primary: 214 95% 35%;
     --primary-foreground: 200 6% 90%;
 
-    --secondary: 58 41% 51%;
+    --secondary: 24 95% 71%;
     --secondary-foreground: 200 6% 90%;
 
-    --muted: 200 15% 51%;
+    --muted: 200 25% 71%;
     --muted-foreground: 215 20.2% 65.1%;
 
     --accent: 217.2 32.6% 17.5%;

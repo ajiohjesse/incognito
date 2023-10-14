@@ -23,7 +23,7 @@ const AccountPage = () => {
             Share your link below to receive messages
           </p>
           <div className='mt-6'>
-            <p className='w-full break-words rounded-md bg-black/30 px-4 py-2 text-sm md:w-fit'>
+            <p className='w-full break-words rounded-md bg-black/30 px-4 py-2 text-sm text-secondary md:w-fit'>
               http://incognito.com.ng/send?user=5346
             </p>
 

@@ -9,7 +9,7 @@ const LoginPage = () => {
         <p>
           Login to retrieve your anonymous conversations. Don&#39;t have an
           account?{' '}
-          <Link href='/auth/register' className='text-primary'>
+          <Link href='/auth/register' className='text-secondary'>
             Sign up.
           </Link>
         </p>

@@ -3,7 +3,7 @@ import { userStore } from '@/stores/userStore';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 import { useSetRecoilState } from 'recoil';
-import { loginService } from './services';
+import { loginService, registerService } from './services';
 
 export const useLogin = () => {
   const { toast } = useToast();
@@ -17,19 +17,46 @@ export const useLogin = () => {
         toast({
           title: 'Successful',
           description: res.message,
-          variant: 'success',
           duration: 1000,
         });
         setUser({
-          userId: res.data.userId,
+          userName: res.data.userName,
         });
 
-        router.push('/account');
+        router.refresh();
       } else {
         toast({
           title: 'Failed',
           description: res.message,
-          variant: 'destructive',
+        });
+      }
+    },
+  });
+};
+
+export const useRegister = () => {
+  const { toast } = useToast();
+  const router = useRouter();
+  const setUser = useSetRecoilState(userStore);
+
+  return useMutation({
+    mutationFn: registerService,
+    onSuccess: res => {
+      if (res.success) {
+        toast({
+          title: 'Successful',
+          description: res.message,
+          duration: 1000,
+        });
+        setUser({
+          userName: res.data.userName,
+        });
+
+        router.refresh();
+      } else {
+        toast({
+          title: 'Failed',
+          description: res.message,
         });
       }
     },

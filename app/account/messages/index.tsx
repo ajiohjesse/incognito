@@ -38,7 +38,12 @@ const Messages = () => {
               </CardContent>
               <CardFooter>
                 <div className='flex w-full justify-end'>
-                  <Button asChild variant='outline' size='sm'>
+                  <Button
+                    asChild
+                    variant='outline'
+                    size='sm'
+                    className='text-secondary'
+                  >
                     <Link href='/account/messages/id'>Read</Link>
                   </Button>
                 </div>

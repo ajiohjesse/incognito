@@ -21,7 +21,6 @@ export default function Home() {
               />
             </span>{' '}
             Messages Anonymously
-            <span className='text-primary'>.</span>
           </h1>
 
           <p className='text-sm text-muted transition duration-700 animate-in zoom-in-75 slide-in-from-top-10 md:text-base'>

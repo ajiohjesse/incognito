@@ -5,26 +5,33 @@ import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   try {
-    const { userId, password } = await req.json();
+    const { userName, password } = await req.json();
 
     await connectDB();
     const user = await User.findOne({
-      userId,
+      userName,
     });
 
     if (!user) {
-      return Response.json({ success: false, message: 'User not found' });
+      return Response.json({
+        success: false,
+        message: 'User not found',
+        data: null,
+        error: null,
+      });
     }
 
     if (user.password !== password) {
       return Response.json({
         success: false,
         message: 'Password is incorrect',
+        data: null,
+        error: null,
       });
     }
 
     try {
-      const token = await new SignJWT({ userId: user.userId })
+      const token = await new SignJWT({ userName: user.userName })
         .setProtectedHeader({ alg: 'HS256' })
         .setExpirationTime('365d')
         .sign(new TextEncoder().encode(process.env.JWT || ''));
@@ -35,15 +42,22 @@ export async function POST(req: Request) {
         success: true,
         message: 'Login successful',
         data: user,
+        error: null,
       });
     } catch (error) {
       return Response.json({
         success: false,
         error,
         message: 'unable to set token',
+        data: null,
       });
     }
   } catch (error) {
-    return Response.json({ success: false, error, message: 'Login failed' });
+    return Response.json({
+      success: false,
+      error,
+      message: 'Login failed',
+      data: null,
+    });
   }
 }

@@ -1,14 +1,27 @@
 import axios from 'axios';
-import { LoginPayload } from './types';
 
 interface User {
   _id: string;
-  userId: string;
+  userName: string;
 }
 
-export const loginService = async (payload: LoginPayload) => {
+interface AuthPayload {
+  userName: string;
+  password: string;
+}
+
+export const loginService = async (payload: AuthPayload) => {
   const { data } = await axios.post<ApiResponse<User>>(
     '/api/auth/login',
+    payload,
+  );
+
+  return data;
+};
+
+export const registerService = async (payload: AuthPayload) => {
+  const { data } = await axios.post<ApiResponse<User>>(
+    '/api/auth/register',
     payload,
   );
 

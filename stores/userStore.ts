@@ -3,7 +3,7 @@ import cookies from 'js-cookie';
 import { atom } from 'recoil';
 
 interface User {
-  userId: string;
+  userName: string;
 }
 
 export const userStore = atom<User | null>({
