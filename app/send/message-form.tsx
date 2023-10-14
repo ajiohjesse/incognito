@@ -10,10 +10,14 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 
 const MessageForm = () => {
-  const userIdParam = useSearchParams().get('user');
-  const [userId, setUserId] = useState(userIdParam || '');
+  const userNameParam = useSearchParams().get('user');
+  const [userName, setUserName] = useState(userNameParam || '');
   const [message, setMessage] = useState('');
   const [isThread, setIsThread] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+  }
 
   return (
     <>
@@ -21,10 +25,10 @@ const MessageForm = () => {
         <InfoIcon className='h-4 w-4' />
         <AlertDescription>
           You are about to send an anonymous message
-          {userId ? (
+          {userName ? (
             <span>
               {' '}
-              to user <span className='font-bold text-primary'>{userId}</span>.
+              to user <span className='font-bold text-primary'>{userName}</span>
             </span>
           ) : (
             '. Please enter a user Id to proceed.'
@@ -34,12 +38,12 @@ const MessageForm = () => {
 
       <form className='mt-8 flex flex-col gap-6'>
         <div className='space-y-2'>
-          <label htmlFor='id'>User Id</label>
+          <label htmlFor='id'>Username</label>
           <Input
             type='text'
-            placeholder='User Id'
-            value={userId}
-            onChange={e => setUserId(e.target.value)}
+            placeholder='Username'
+            value={userName}
+            onChange={e => setUserName(e.target.value.trim().toLowerCase())}
           />
         </div>
 
@@ -49,7 +53,7 @@ const MessageForm = () => {
             placeholder='Type a message'
             className='min-h-[200px]'
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={e => setMessage(e.target.value.trim())}
           />
         </div>
 
@@ -75,7 +79,9 @@ const MessageForm = () => {
           </label>
         </div>
 
-        <Button type='submit'>Send</Button>
+        <Button type='submit' disabled={!userName || !message}>
+          Send
+        </Button>
       </form>
     </>
   );

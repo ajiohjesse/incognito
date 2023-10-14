@@ -7,32 +7,15 @@ import {
 } from '../components/ui/tabs';
 import Messages from './messages';
 import Profile from './profile';
-import ShareButtons from './share-buttons';
 import Threads from './threads';
+import AccountHeader from './account-header';
 
 const AccountPage = () => {
+ 
+
   return (
     <main>
-      <section>
-        <div className='container rounded-md bg-black/20 py-8'>
-          <h2 className='mb-2 text-3xl font-semibold'>
-            Welcome Anonymous 6567
-          </h2>
-          <p className='mb-2 text-lg text-muted'>You&#39;ve gone incognito!</p>
-          <p className='text-xs text-muted'>
-            Share your link below to receive messages
-          </p>
-          <div className='mt-6'>
-            <p className='w-full break-words rounded-md bg-black/30 px-4 py-2 text-sm text-secondary md:w-fit'>
-              http://incognito.com.ng/send?user=5346
-            </p>
-
-            <div className='mt-4 flex items-center justify-center gap-4 md:justify-start'>
-              <ShareButtons />
-            </div>
-          </div>
-        </div>
-      </section>
+      <AccountHeader/>
 
       <div className='container grid gap-6 py-4 sm:py-8 lg:grid-cols-[1fr,400px] lg:gap-16'>
         <Tabs defaultValue='messages'>
