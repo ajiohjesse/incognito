@@ -45,27 +45,23 @@ const RegisterForm = () => {
         setErrors(prev => ({ ...prev, [value[0]]: 'Field is required' }));
         return;
       }
-
-      if (value[0] === 'userName') {
-        console.log(value[0]);
-        const userName = value[1];
-        if (!userName.match(USERNAME_REGEXP)) {
-          setErrors(prev => ({
-            ...prev,
-            [value[0]]: 'username contains invalid characters',
-          }));
-          return;
-        }
-
-        if (RESERVED_USERNAMES.includes(userName)) {
-          setErrors(prev => ({
-            ...prev,
-            [value[0]]: 'This username is reserved',
-          }));
-          return;
-        }
-      }
     });
+
+    if (!userDetails.userName.match(USERNAME_REGEXP)) {
+      setErrors(prev => ({
+        ...prev,
+        userName: 'username contains invalid characters',
+      }));
+      return;
+    }
+
+    if (RESERVED_USERNAMES.includes(userDetails.userName)) {
+      setErrors(prev => ({
+        ...prev,
+        userName: 'This username is reserved',
+      }));
+      return;
+    }
 
     if (userDetails.password.length < 4) {
       setErrors(prev => ({
