@@ -44,7 +44,7 @@ const Profile = () => {
               <X />
             </button>
             <h3 className='text-2xl font-semibold'>Profile</h3>
-            <p>Hello, Anonymous {user.userId}.</p>
+            <p>Hello, Anonymous {user.userName}.</p>
           </div>
 
           {isEditPassword ? (
