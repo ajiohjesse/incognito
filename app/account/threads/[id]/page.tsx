@@ -12,6 +12,7 @@ interface PageProps {
 }
 
 const ThreadPage = async ({ params: { id } }: PageProps) => {
+  await connectDB();
   const thread = (await Thread.findById(id)) as Thread;
   const messages = (await ThreadMessage.find({
     threadId: id,

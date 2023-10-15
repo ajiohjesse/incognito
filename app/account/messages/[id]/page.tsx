@@ -8,12 +8,14 @@ import {
 } from '@/app/components/ui/card';
 import { formatCustomDate } from '@/lib/utils';
 import Message from '@/network/Models/message';
+import connectDB from '@/network/connectDB';
 
 interface PageProps {
   params: { id: string };
 }
 
 const MessagePage = async ({ params: { id } }: PageProps) => {
+  await connectDB();
   const { message, createdAt } = (await Message.findById(id)) as SingleMessage;
 
   return (

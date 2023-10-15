@@ -78,9 +78,9 @@ export async function GET() {
       );
     }
 
-    await connectDB();
-
-    const messages = await Message.find().sort({ createdAt: -1 });
+    const messages = await Message.find({
+      receiver: user.userName,
+    }).sort({ createdAt: -1 });
 
     return Response.json({
       success: true,
