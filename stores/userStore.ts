@@ -1,4 +1,4 @@
-import { jwtVerify } from 'jose';
+import { getUserFromToken } from '@/lib/utils';
 import cookies from 'js-cookie';
 import { atom } from 'recoil';
 
@@ -16,16 +16,6 @@ export const userStore = atom<User | null>({
 async function getUser() {
   const userToken = cookies.get('userToken');
 
-  if (!userToken) return null;
-
-  try {
-    const result = await jwtVerify(
-      userToken,
-      new TextEncoder().encode(process.env.JWT || ''),
-    );
-
-    return result.payload as unknown as User;
-  } catch {
-    return null;
-  }
+  const user = await getUserFromToken(userToken);
+  return user;
 }

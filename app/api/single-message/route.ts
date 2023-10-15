@@ -1,6 +1,8 @@
+import { getUserFromToken } from '@/lib/utils';
 import Message from '@/network/Models/message';
 import User from '@/network/Models/user';
 import connectDB from '@/network/connectDB';
+import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   try {
@@ -39,6 +41,45 @@ export async function POST(req: Request) {
       success: false,
       error,
       message: 'Message not sent',
+      data: null,
+    });
+  }
+}
+
+export async function GET() {
+  try {
+    const cookieStore = cookies();
+    const token = cookieStore.get('userToken');
+
+    const user = await getUserFromToken(token?.value);
+
+    if (!user) {
+      return Response.json(
+        {
+          success: false,
+          data: null,
+          message: 'Unauthorized',
+          error: user,
+        },
+        { status: 401 },
+      );
+    }
+
+    const messages = await Message.find({
+      reciever: user.userName,
+    });
+
+    return Response.json({
+      success: true,
+      data: messages,
+      message: 'Success',
+      error: null,
+    });
+  } catch (error) {
+    return Response.json({
+      success: false,
+      error,
+      message: 'Unable to fetch messages',
       data: null,
     });
   }
