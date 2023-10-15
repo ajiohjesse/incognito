@@ -27,7 +27,7 @@ const LoginForm = () => {
           placeholder='Enter username'
           id='username'
           value={userName}
-          onChange={e => setUserId(e.target.value)}
+          onChange={e => setUserId(e.target.value.trim().toLowerCase())}
         />
       </div>
 

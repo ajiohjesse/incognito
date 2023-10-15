@@ -6,12 +6,14 @@ import ThreadMessage from '@/network/Models/thread-message';
 import { InfoIcon } from 'lucide-react';
 import MessageCard from './message-card';
 import ReplyThreadButton from './reply-button';
+import connectDB from '@/network/connectDB';
 
 interface PageProps {
   params: { id: string };
 }
 
 const ThreadPage = async ({ params: { id } }: PageProps) => {
+  await connectDB();
   const thread = (await Thread.findById(id)) as Thread;
   const messages = (await ThreadMessage.find({
     threadId: id,
