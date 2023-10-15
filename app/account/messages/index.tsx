@@ -1,3 +1,5 @@
+'use client';
+
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
 import { Button } from '@/app/components/ui/button';
 import {
@@ -6,12 +8,16 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from '@/app/components/ui/card';
+import { formatCustomDate, getWords } from '@/lib/utils';
+import { useGetSingleMessages } from '@/network/react-query/message/hooks';
 import { Info } from 'lucide-react';
 import Link from 'next/link';
+import MessageSkeleton from './message-skeleton';
 
 const Messages = () => {
+  const { data: messages, isLoading } = useGetSingleMessages();
+
   return (
     <div className='space-y-8'>
       <Alert variant='info'>
@@ -23,18 +29,20 @@ const Messages = () => {
       </Alert>
 
       <div className='space-y-4'>
-        {Array(4)
-          .fill(null)
-          .map((_, index) => (
+        {isLoading ? (
+          Array(2)
+            .fill(null)
+            .map((_, index) => <MessageSkeleton key={index} />)
+        ) : messages && messages.length ? (
+          messages.map(({ _id, createdAt, message }, index) => (
             <Card className='h-full' key={index}>
               <CardHeader>
-                <CardTitle className='text-lg'>Anonymous 1f4fg</CardTitle>
-                <CardDescription>Sent: 12th Oct, 23</CardDescription>
+                <CardDescription>
+                  Sent: {formatCustomDate(createdAt)}
+                </CardDescription>
               </CardHeader>
               <CardContent className='text-sm text-muted'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                velit totam quisquam temporibus. Voluptatum ullam, doloribus
-                magni dolorum atque maiores...
+                {getWords(message, 30)}...
               </CardContent>
               <CardFooter>
                 <div className='flex w-full justify-end'>
@@ -44,12 +52,15 @@ const Messages = () => {
                     size='sm'
                     className='text-secondary'
                   >
-                    <Link href='/account/messages/id'>Read</Link>
+                    <Link href={`/account/messages/${_id}`}>Read</Link>
                   </Button>
                 </div>
               </CardFooter>
             </Card>
-          ))}
+          ))
+        ) : (
+          <>No messages</>
+        )}
       </div>
     </div>
   );

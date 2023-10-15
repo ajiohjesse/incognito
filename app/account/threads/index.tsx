@@ -1,18 +1,44 @@
+'use client';
+
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
 import { Badge } from '@/app/components/ui/badge';
 import { Button } from '@/app/components/ui/button';
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
+import useCurrentUser from '@/hooks/useCurrentUser';
+import { formatCustomDate } from '@/lib/utils';
+import { useGetThreads } from '@/network/react-query/message/hooks';
 import { Info } from 'lucide-react';
 import Link from 'next/link';
+import ThreadSkeleton from './thread-skeleton';
 
 const Threads = () => {
+  const { user } = useCurrentUser();
+  const { data: threads, isLoading } = useGetThreads();
+
+  if (!user) return null;
+
+  const getThreadOwner = (threadMembers: [string, string]) => {
+    if (threadMembers[0] === user.userName) {
+      return 'You';
+    } else {
+      return 'Anonymous';
+    }
+  };
+
+  const getThreadMember = (threadMembers: [string, string]) => {
+    if (threadMembers[1] === user.userName) {
+      return 'Anonymous';
+    } else {
+      return threadMembers[1];
+    }
+  };
+
   return (
     <div className='space-y-8'>
       <Alert variant='info'>
@@ -23,25 +49,30 @@ const Threads = () => {
       </Alert>
 
       <div className='space-y-4'>
-        {Array(4)
-          .fill(null)
-          .map((_, index) => (
+        {isLoading ? (
+          Array(2)
+            .fill(null)
+            .map((_, index) => <ThreadSkeleton key={index} />)
+        ) : threads && threads.length ? (
+          threads.map(({ _id, participants, createdAt }, index) => (
             <Card className='relative h-full' key={index}>
               <Badge className='absolute right-4 top-4 bg-primary'>
                 1 new msg
               </Badge>
               <CardHeader>
-                <CardTitle className='text-lg'>Thread 1f4fg</CardTitle>
+                <CardTitle className='text-lg'>
+                  {getThreadMember(participants)}
+                </CardTitle>
                 <CardDescription>
-                  <span className='block'>Created On: 12th Oct, 23</span>
-                  <span className='block'>Created By: You</span>
+                  <span className='block'>
+                    Created On: {formatCustomDate(createdAt)}
+                  </span>
+                  <span className='block'>
+                    Created By: {getThreadOwner(participants)}
+                  </span>
                 </CardDescription>
               </CardHeader>
-              <CardContent className='text-sm text-muted'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                velit totam quisquam temporibus. Voluptatum ullam, doloribus
-                magni dolorum atque maiores...
-              </CardContent>
+
               <CardFooter>
                 <div className='flex w-full justify-end'>
                   <Button
@@ -50,12 +81,15 @@ const Threads = () => {
                     size='sm'
                     className='text-secondary'
                   >
-                    <Link href='/account/threads/id'>Open</Link>
+                    <Link href={`/account/threads/${_id}`}>Open</Link>
                   </Button>
                 </div>
               </CardFooter>
             </Card>
-          ))}
+          ))
+        ) : (
+          <>No threads</>
+        )}
       </div>
     </div>
   );

@@ -7,16 +7,16 @@ import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   try {
-    const { sender, reciever, message, reqThreadId } = await req.json();
-    let threadId = reqThreadId || null;
+    const { sender, receiver, message, threadId } = await req.json();
+    let thread = threadId || null;
 
     await connectDB();
 
-    const user = await User.findOne({
-      userName: reciever,
+    const dbReceiver = await User.findOne({
+      userName: receiver,
     });
 
-    if (!user) {
+    if (!dbReceiver) {
       return Response.json({
         success: false,
         message: 'User not found',
@@ -25,27 +25,36 @@ export async function POST(req: Request) {
       });
     }
 
-    if (!threadId) {
+    if (dbReceiver.userName === sender) {
+      return Response.json({
+        success: false,
+        message: 'Cannot send message to yourself',
+        data: null,
+        error: null,
+      });
+    }
+
+    if (!thread) {
       const previousThread = await Thread.findOne({
-        participants: [sender, reciever],
+        participants: [sender, receiver],
       });
 
       if (previousThread) {
-        threadId = previousThread._id;
+        thread = previousThread._id;
       } else {
         const newThread = new Thread({
-          participants: [sender, reciever],
+          participants: [sender, receiver],
         });
 
         newThread.save();
-        threadId = newThread._id;
+        thread = newThread._id;
       }
     }
 
     const newMessage = new ThreadMessage({
-      reciever,
+      receiver,
       sender,
-      threadId,
+      threadId: thread,
       message,
     });
 
@@ -86,6 +95,8 @@ export async function GET() {
       );
     }
 
+    await connectDB();
+
     const threads = await Thread.find({
       participants: { $in: [user.userName] },
     });
@@ -97,11 +108,14 @@ export async function GET() {
       error: null,
     });
   } catch (error) {
-    return Response.json({
-      success: false,
-      error,
-      message: 'Unable to fetch threads',
-      data: null,
-    });
+    return Response.json(
+      {
+        success: false,
+        error,
+        message: 'Unable to fetch threads',
+        data: null,
+      },
+      { status: 500 },
+    );
   }
 }

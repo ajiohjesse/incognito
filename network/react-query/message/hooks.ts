@@ -1,6 +1,12 @@
 import { useToast } from '@/app/components/ui/use-toast';
-import { useMutation } from 'react-query';
-import { sendSingleMessage, sendThreadMessage } from './services';
+import { QUERY_KEYS } from '@/network/query-keys';
+import { useMutation, useQuery } from 'react-query';
+import {
+  getSingleMessages,
+  getThreads,
+  sendSingleMessage,
+  sendThreadMessage,
+} from './services';
 
 export const useSendSingleMessage = (successCallback?: () => void) => {
   const { toast } = useToast();
@@ -45,5 +51,19 @@ export const useSendThreadMessage = (successCallback?: () => void) => {
         });
       }
     },
+  });
+};
+
+export const useGetSingleMessages = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.messages],
+    queryFn: getSingleMessages,
+  });
+};
+
+export const useGetThreads = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.threads],
+    queryFn: getThreads,
   });
 };

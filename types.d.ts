@@ -29,3 +29,10 @@ interface ThreadMessage {
   createdAt: string;
   updatedAt: string;
 }
+
+interface Thread {
+  _id: string;
+  participants: [string, string];
+  createdAt: string;
+  updatedAt: string;
+}

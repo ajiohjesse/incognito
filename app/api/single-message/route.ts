@@ -6,15 +6,19 @@ import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   try {
-    const { reciever, message } = await req.json();
+    const { receiver, message } = await req.json();
+    const cookieStore = cookies();
+    const token = cookieStore.get('userToken');
+
+    const user = await getUserFromToken(token?.value);
 
     await connectDB();
 
-    const user = await User.findOne({
-      userName: reciever,
+    const dbReceiver = await User.findOne({
+      userName: receiver,
     });
 
-    if (!user) {
+    if (!dbReceiver) {
       return Response.json({
         success: false,
         message: 'User not found',
@@ -23,8 +27,17 @@ export async function POST(req: Request) {
       });
     }
 
+    if (user && dbReceiver.userName === user.userName) {
+      return Response.json({
+        success: false,
+        message: 'Cannot send message to yourself',
+        data: null,
+        error: null,
+      });
+    }
+
     const newMessage = new Message({
-      reciever,
+      receiver,
       message,
     });
 
@@ -65,9 +78,9 @@ export async function GET() {
       );
     }
 
-    const messages = await Message.find({
-      reciever: user.userName,
-    });
+    await connectDB();
+
+    const messages = await Message.find().sort({ createdAt: -1 });
 
     return Response.json({
       success: true,
@@ -76,11 +89,14 @@ export async function GET() {
       error: null,
     });
   } catch (error) {
-    return Response.json({
-      success: false,
-      error,
-      message: 'Unable to fetch messages',
-      data: null,
-    });
+    return Response.json(
+      {
+        success: false,
+        error,
+        message: 'Unable to fetch messages',
+        data: null,
+      },
+      { status: 500 },
+    );
   }
 }

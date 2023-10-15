@@ -51,13 +51,15 @@ const MessageForm = () => {
 
       threadMessageMutation.mutate({
         sender: user.userName,
-        reciever: userName,
+        receiver: userName,
         message: message.trim(),
       });
+
+      return;
     }
 
     singleMessageMutation.mutate({
-      reciever: userName,
+      receiver: userName,
       message: message.trim(),
     });
   };

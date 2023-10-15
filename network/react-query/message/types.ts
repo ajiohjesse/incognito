@@ -1,10 +1,11 @@
 export interface SingleMessagePayload {
-  reciever: string;
+  receiver: string;
   message: string;
 }
 
 export interface ThreadMessagePayload {
   sender: string;
-  reciever: string;
+  receiver: string;
   message: string;
+  threadId?: string;
 }

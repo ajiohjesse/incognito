@@ -18,3 +18,19 @@ export const sendThreadMessage = async (payload: ThreadMessagePayload) => {
 
   return data;
 };
+
+export const getSingleMessages = async () => {
+  const { data } = await axios.get<ApiResponse<SingleMessage[]>>(
+    '/api/single-message',
+  );
+
+  return data.data;
+};
+
+export const getThreads = async () => {
+  const { data } = await axios.get<ApiResponse<Thread[]>>(
+    '/api/thread-message',
+  );
+
+  return data.data;
+};
