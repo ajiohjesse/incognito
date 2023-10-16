@@ -26,13 +26,13 @@ const MessagePage = async ({ params: { id } }: PageProps) => {
       <div className='container max-w-[700px] py-2'>
         <Card>
           <CardHeader>
-            <CardTitle>Anonymous</CardTitle>
+            <CardTitle className='text-primary'>Anonymous</CardTitle>
             <CardDescription>
               Sent: {formatCustomDate(createdAt)}
             </CardDescription>
           </CardHeader>
 
-          <CardContent className='text-gray-300'>{message}</CardContent>
+          <CardContent className=''>{message}</CardContent>
         </Card>
       </div>
     </main>

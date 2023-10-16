@@ -37,9 +37,9 @@ const InfoCards = () => {
           variants={itemVariants}
           className='min-w-[240px] flex-1'
         >
-          <Card className='h-full'>
+          <Card className='h-full border-none shadow-md'>
             <CardHeader>
-              <CardTitle className='text-lg'>{title}</CardTitle>
+              <CardTitle className='text-lg text-primary'>{title}</CardTitle>
             </CardHeader>
             <CardContent className='text-sm text-muted'>{content}</CardContent>
           </Card>

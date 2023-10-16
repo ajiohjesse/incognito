@@ -18,18 +18,18 @@ const Profile = () => {
     <>
       {!isProfileOpen && (
         <button
-          className='fixed right-[10%] top-3 z-[11] rounded-full p-2 transition hover:bg-muted/50 lg:hidden'
+          className='fixed right-[10%] top-3 z-[11] rounded-full p-2 transition hover:bg-primary/20 lg:hidden'
           onClick={() => setProfileOpen(true)}
           type='button'
           title='profile'
         >
-          <User />
+          <User className='text-primary' />
         </button>
       )}
 
       <div
         className={cn(
-          'fixed top-[60px] z-[11] h-full w-full rounded-md bg-background duration-500 animate-in slide-in-from-right-32 lg:sticky lg:top-[80px] lg:h-fit lg:border lg:bg-black/20',
+          'fixed top-[60px] z-[11] h-full w-full rounded-md bg-card duration-500 animate-in slide-in-from-right-32 lg:sticky lg:top-[80px] lg:h-fit lg:border lg:shadow-md',
           isProfileOpen ? 'right-0' : '-right-[100%]',
         )}
       >
@@ -37,11 +37,11 @@ const Profile = () => {
           <div className='mb-8 space-y-2'>
             <button
               onClick={() => setProfileOpen(false)}
-              className='absolute right-6 top-0 rounded-full p-2 transition hover:bg-muted/50 lg:hidden'
+              className='absolute right-6 top-0 rounded-full p-2 transition hover:bg-primary/20 lg:hidden'
               type='button'
               title='close profile'
             >
-              <X />
+              <X className='text-primary' />
             </button>
             <h3 className='text-2xl font-semibold'>Profile</h3>
             <p>Hello, {user.userName}.</p>

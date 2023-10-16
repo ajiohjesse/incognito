@@ -12,6 +12,7 @@ import {
 import { Textarea } from '@/app/components/ui/textarea';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { useSendThreadMessage } from '@/network/react-query/message/hooks';
+import { Send } from 'lucide-react';
 import { useState } from 'react';
 
 interface Props {
@@ -19,8 +20,9 @@ interface Props {
 }
 
 const ReplyThreadButton = ({ thread }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const { mutate, isLoading } = useSendThreadMessage();
+  const { mutate, isLoading } = useSendThreadMessage(() => setIsOpen(false));
   const { user } = useCurrentUser();
 
   if (!user) return null;
@@ -39,9 +41,12 @@ const ReplyThreadButton = ({ thread }: Props) => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={open => setIsOpen(open)}>
       <DialogTrigger asChild>
-        <Button size='sm'>Reply</Button>
+        <Button size='sm' className='flex items-center gap-4' type='button'>
+          <Send />
+          Reply
+        </Button>
       </DialogTrigger>
 
       <DialogContent>

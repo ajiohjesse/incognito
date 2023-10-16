@@ -6,10 +6,10 @@ const LoginPage = () => {
     <div className='container grid max-w-[500px] gap-6 py-12'>
       <div className='grid gap-4'>
         <h2 className='text-2xl font-bold md:text-4xl'>Login</h2>
-        <p>
+        <p className='text-sm'>
           Login to retrieve your anonymous conversations. Don&#39;t have an
           account?{' '}
-          <Link href='/auth/register' className='text-secondary'>
+          <Link href='/auth/register' className='text-primary'>
             Sign up.
           </Link>
         </p>

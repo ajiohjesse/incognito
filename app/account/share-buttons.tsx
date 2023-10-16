@@ -10,40 +10,50 @@ import {
   WhatsappShareButton,
 } from 'next-share';
 
-const ShareButtons = () => {
+interface Props {
+  link: string;
+}
+
+const ShareButtons = ({ link }: Props) => {
+  const DEFAULT_MESSAGE = `Write a secret anonymous message for me.. I won't know who wrote it.. ${link}`;
+
   return (
     <div className='flex items-center gap-4'>
       <FacebookShareButton
         blankTarget
-        url={'https://github.com/next-share'}
-        quote={'next-share is a social share buttons for your next React apps.'}
-        hashtag={'#nextshare'}
+        url={link}
+        quote={DEFAULT_MESSAGE}
+        hashtag={'#incognito'}
       >
         <FacebookIcon size={32} round />
       </FacebookShareButton>
 
       <WhatsappShareButton
         blankTarget
-        url={'https://github.com/next-share'}
-        title={'next-share is a social share buttons for your next React apps.'}
+        url={link}
+        title={DEFAULT_MESSAGE}
         separator=':: '
       >
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
 
-      <TwitterShareButton
-        blankTarget
-        url={'https://github.com/next-share'}
-        title={'next-share is a social share buttons for your next React apps.'}
-      >
+      <TwitterShareButton blankTarget url={link} title={DEFAULT_MESSAGE}>
         <TwitterIcon size={32} round />
       </TwitterShareButton>
 
-      <button type='button' title='copy link'>
-        <Copy className='text-primary' />
+      <button
+        type='button'
+        title='copy link'
+        className='grid h-8 w-8 place-items-center rounded-full bg-slate-100'
+      >
+        <Copy className='text-primary' width={16} height={16} />
       </button>
-      <button type='button' title='share link'>
-        <Share2 className='text-primary' />
+      <button
+        type='button'
+        title='share link'
+        className='grid h-8 w-8 place-items-center rounded-full bg-slate-100'
+      >
+        <Share2 className='text-primary' width={16} height={16} />
       </button>
     </div>
   );

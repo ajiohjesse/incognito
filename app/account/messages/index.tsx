@@ -35,10 +35,14 @@ const Messages = () => {
             .map((_, index) => <MessageSkeleton key={index} />)
         ) : messages && messages.length ? (
           messages.map(({ _id, createdAt, message }, index) => (
-            <Card className='h-full' key={index}>
+            <Card
+              className='h-full shadow-md'
+              key={index}
+            >
               <CardHeader>
                 <CardDescription>
-                  Sent: {formatCustomDate(createdAt)}
+                  <span className='mr-4 font-semibold'>Sent:</span>{' '}
+                  {formatCustomDate(createdAt)}
                 </CardDescription>
               </CardHeader>
               <CardContent className='text-sm text-muted'>
@@ -46,12 +50,7 @@ const Messages = () => {
               </CardContent>
               <CardFooter>
                 <div className='flex w-full justify-end'>
-                  <Button
-                    asChild
-                    variant='outline'
-                    size='sm'
-                    className='text-secondary'
-                  >
+                  <Button asChild variant='outline' size='sm'>
                     <Link href={`/account/messages/${_id}`}>Read</Link>
                   </Button>
                 </div>

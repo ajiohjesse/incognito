@@ -31,9 +31,9 @@ const Threads = () => {
     }
   };
 
-  const getThreadMember = (threadMembers: [string, string]) => {
+  const getThreadMember = (threadMembers: [string, string], id: string) => {
     if (threadMembers[1] === user.userName) {
-      return 'Anonymous';
+      return `Anonymous ${id.slice(-4)}`;
     } else {
       return threadMembers[1];
     }
@@ -55,32 +55,29 @@ const Threads = () => {
             .map((_, index) => <ThreadSkeleton key={index} />)
         ) : threads && threads.length ? (
           threads.map(({ _id, participants, createdAt }, index) => (
-            <Card className='relative h-full' key={index}>
+            <Card className='relative h-full shadow-md' key={index}>
               <Badge className='absolute right-4 top-4 bg-primary'>
                 1 new msg
               </Badge>
               <CardHeader>
-                <CardTitle className='text-lg'>
-                  {getThreadMember(participants)}
+                <CardTitle className='mb-2 text-lg text-primary'>
+                  {getThreadMember(participants, _id)}
                 </CardTitle>
                 <CardDescription>
                   <span className='block'>
-                    Created On: {formatCustomDate(createdAt)}
+                    <span className='mr-4 font-medium'>Created On:</span>{' '}
+                    {formatCustomDate(createdAt)}
                   </span>
                   <span className='block'>
-                    Created By: {getThreadOwner(participants)}
+                    <span className='mr-4 font-medium'>Created By:</span>{' '}
+                    {getThreadOwner(participants)}
                   </span>
                 </CardDescription>
               </CardHeader>
 
               <CardFooter>
                 <div className='flex w-full justify-end'>
-                  <Button
-                    asChild
-                    variant='outline'
-                    size='sm'
-                    className='text-secondary'
-                  >
+                  <Button asChild variant='outline' size='sm'>
                     <Link href={`/account/threads/${_id}`}>Open</Link>
                   </Button>
                 </div>

@@ -16,7 +16,7 @@ const AccountPage = () => {
       <AccountHeader />
 
       <div className='container grid gap-6 py-4 sm:py-8 lg:grid-cols-[1fr,400px] lg:gap-16'>
-        <Tabs defaultValue='messages'>
+        <Tabs defaultValue={'messages'}>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='messages'>
               <MessageHeader />

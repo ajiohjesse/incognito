@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Inclusive_Sans } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import Header from './components/header';
 import MessageButton from './components/message-button';
 import Providers from './components/providers';
 import './globals.css';
 
-const font = Inclusive_Sans({
+const font = Poppins({
   subsets: ['latin'],
-  weight: ['400'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className='dark'>
+    <html lang='en'>
       <head>
         <link
           rel='apple-touch-icon'
@@ -44,6 +44,7 @@ export default function RootLayout({
           href='/favicon-16x16.png'
         />
         <link rel='manifest' href='/site.webmanifest' />
+        <title>Incognito</title>
       </head>
       <body className={font.className}>
         <Providers>
