@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
+import { Skeleton } from '@/app/components/ui/skeleton';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { cn, formatCustomDate } from '@/lib/utils';
 import { CheckCheck } from 'lucide-react';
@@ -56,3 +57,21 @@ const MessageCard = ({
 };
 
 export default MessageCard;
+
+export const MessageCardSkeleton = () => {
+  return (
+    <Card className='relative w-[min(80%,900px)] border-2 border-white shadow-md odd:border-l-purple-700 even:self-end even:border-r-primary'>
+      <CardHeader>
+        <CardTitle className='space-y-2'>
+          <Skeleton className='h-4 w-[40%]' />
+          <Skeleton className='h-4 w-[60%]' />
+        </CardTitle>
+      </CardHeader>
+      <CardContent className='space-y-2'>
+        <Skeleton className='h-4 w-full' />
+        <Skeleton className='h-4 w-full' />
+        <Skeleton className='h-4 w-[50%]' />
+      </CardContent>
+    </Card>
+  );
+};

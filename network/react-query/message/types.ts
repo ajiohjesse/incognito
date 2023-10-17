@@ -9,3 +9,8 @@ export interface ThreadMessagePayload {
   message: string;
   threadId?: string;
 }
+
+export interface ThreadMessagesResponse {
+  thread: Thread;
+  messages: ThreadMessage[];
+}
