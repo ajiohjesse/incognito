@@ -73,11 +73,10 @@ const MessageForm = () => {
           {userName ? (
             <span>
               {' '}
-              to user{' '}
-              <span className='font-bold text-secondary'>{userName}</span>
+              to user <span className='font-bold text-primary'>{userName}</span>
             </span>
           ) : (
-            '. Please enter a user Id to proceed.'
+            '. Please enter a username to proceed.'
           )}
         </AlertDescription>
       </Alert>
