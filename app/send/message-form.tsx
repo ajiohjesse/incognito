@@ -105,8 +105,9 @@ const MessageForm = () => {
         <Alert variant='info' className='mt-4 text-sm'>
           <InfoIcon className='h-4 w-4' />
           <AlertDescription>
-            Threads allow both you and the recipient to reply to anonymous
-            messages. (You must be logged in)
+            Sending this message as a thread will create a conversation that you
+            and the recipient can reply to while keeping you anonymous. (You must be
+            logged in)
           </AlertDescription>
         </Alert>
 

@@ -82,4 +82,10 @@
     max-width: 1240px;
     margin: 0 auto;
   }
+
+  .chat-bg {
+    background: linear-gradient(90deg, #f9f9f9, #f9f9f9ad, #f9f9f9ad, #f9f9f9),
+      url('../assets/chat-bg.jfif');
+    background-attachment: fixed;
+  }
 }

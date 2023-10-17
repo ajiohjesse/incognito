@@ -17,14 +17,14 @@ const ThreadPage = async ({ params: { id } }: PageProps) => {
   })) as ThreadMessage[];
 
   return (
-    <main className='mb-[50px]'>
-      <div className='sticky top-[60px] z-10 bg-background py-2'>
-        <div className='container py-4 font-semibold'>
+    <main className=''>
+      <div className='sticky top-[60px] z-10 bg-primary py-2'>
+        <div className='container py-2 font-semibold text-white'>
           <BackButton />
         </div>
       </div>
 
-      <div className='container flex max-w-[800px] flex-col gap-6'>
+      <div className='chat-bg container px-2 flex max-w-[800px] flex-col gap-6 py-12'>
         {messages.map((message, index) => (
           <MessageCard
             key={index}

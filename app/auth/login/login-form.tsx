@@ -38,6 +38,7 @@ const LoginForm = () => {
           id='password'
           type='password'
           value={password}
+          showPasswordToggle
           onChange={e => setPassword(e.target.value)}
         />
       </div>

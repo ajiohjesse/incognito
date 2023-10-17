@@ -29,7 +29,7 @@ const MessageCard = ({
   return (
     <Card
       className={cn(
-        'relative w-[min(90%,900px)] border-2 border-white shadow-md',
+        'relative w-[min(80%,900px)] border-2 border-white shadow-md',
         sender === user.userName
           ? 'self-end  border-r-primary'
           : 'border-l-purple-700',
