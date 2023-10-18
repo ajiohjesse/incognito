@@ -29,7 +29,7 @@ const AccountHeader = () => {
 
             <div className='mt-4 flex items-center justify-center gap-4 md:justify-start'>
               <ShareButtons
-                link={`http://incognito-message.vercel.app/send?user=${user.userName}`}
+                link={`https://incognito-message.vercel.app/send?user=${user.userName}`}
               />
             </div>
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Copy, Share2 } from 'lucide-react';
+import { Copy } from 'lucide-react';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -9,13 +9,34 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from 'next-share';
+import { useToast } from '../components/ui/use-toast';
 
 interface Props {
   link: string;
 }
 
 const ShareButtons = ({ link }: Props) => {
-  const DEFAULT_MESSAGE = `Write a secret anonymous message for me.. I won't know who wrote it.. ${link}`;
+  const DEFAULT_MESSAGE = `Write a secret anonymous message for me 🥳🥳. I won't know who wrote it...`;
+  const { toast } = useToast();
+
+  const handleCopy = () => {
+    if (!navigator || !navigator.clipboard) {
+      toast({
+        title: 'Failed to copy',
+        description: 'Your browser does not support copying to clipboard',
+        duration: 1000,
+      });
+      return;
+    }
+
+    navigator.clipboard.writeText(link).then(() => {
+      toast({
+        title: 'Link Copied',
+        description: 'Your unique link has been copied to your clipboard',
+        duration: 1000,
+      });
+    });
+  };
 
   return (
     <div className='flex items-center gap-4'>
@@ -28,12 +49,7 @@ const ShareButtons = ({ link }: Props) => {
         <FacebookIcon size={32} round />
       </FacebookShareButton>
 
-      <WhatsappShareButton
-        blankTarget
-        url={link}
-        title={DEFAULT_MESSAGE}
-        separator=':: '
-      >
+      <WhatsappShareButton blankTarget url={link} title={DEFAULT_MESSAGE}>
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
 
@@ -44,16 +60,10 @@ const ShareButtons = ({ link }: Props) => {
       <button
         type='button'
         title='copy link'
-        className='grid h-8 w-8 place-items-center rounded-full bg-slate-100'
+        className='grid h-8 w-8 place-items-center rounded-full bg-slate-200'
+        onClick={handleCopy}
       >
         <Copy className='text-primary' width={16} height={16} />
-      </button>
-      <button
-        type='button'
-        title='share link'
-        className='grid h-8 w-8 place-items-center rounded-full bg-slate-100'
-      >
-        <Share2 className='text-primary' width={16} height={16} />
       </button>
     </div>
   );
