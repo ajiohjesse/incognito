@@ -79,5 +79,6 @@ export const useGetThreadMessages = (threadId: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.threadMessages, threadId],
     queryFn: () => getThreadMessages(threadId),
+    refetchInterval: 7000,
   });
 };

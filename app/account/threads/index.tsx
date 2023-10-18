@@ -63,13 +63,13 @@ const Threads = () => {
                 <CardTitle className='mb-2 text-lg text-primary'>
                   {getThreadMember(participants, _id)}
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className='space-y-3'>
                   <span className='block'>
-                    <span className='mr-4 font-medium'>Created On:</span>{' '}
+                    <span className='mr-1 font-medium'>Created On:</span>{' '}
                     {formatCustomDate(createdAt)}
                   </span>
                   <span className='block'>
-                    <span className='mr-4 font-medium'>Created By:</span>{' '}
+                    <span className='mr-1 font-medium'>Created By:</span>{' '}
                     {getThreadOwner(participants)}
                   </span>
                 </CardDescription>

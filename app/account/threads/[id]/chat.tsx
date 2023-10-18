@@ -14,7 +14,7 @@ const Chat: React.FC<Props> = ({ threadId }) => {
 
   return (
     <>
-      <div className='chat-bg container flex max-w-[800px] flex-col gap-6 px-2 py-12'>
+      <div className='chat-bg container flex max-w-[800px] flex-col gap-6 py-12'>
         {isLoading ? (
           <>
             <MessageCardSkeleton />
@@ -27,7 +27,7 @@ const Chat: React.FC<Props> = ({ threadId }) => {
         ) : null}
       </div>
 
-      <div className='fixed bottom-0 left-0 h-[50px] w-full bg-white shadow-md'>
+      <div className='fixed bottom-0 left-0 h-[60px] w-full bg-white shadow-md'>
         <div className='container flex h-full items-center justify-end'>
           {isLoading ? (
             <Skeleton className='h-9 w-28' />

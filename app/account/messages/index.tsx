@@ -35,13 +35,10 @@ const Messages = () => {
             .map((_, index) => <MessageSkeleton key={index} />)
         ) : messages && messages.length ? (
           messages.map(({ _id, createdAt, message }, index) => (
-            <Card
-              className='h-full shadow-md'
-              key={index}
-            >
+            <Card className='h-full shadow-md' key={index}>
               <CardHeader>
                 <CardDescription>
-                  <span className='mr-4 font-semibold'>Sent:</span>{' '}
+                  <span className='mr-1 font-semibold'>Sent:</span>{' '}
                   {formatCustomDate(createdAt)}
                 </CardDescription>
               </CardHeader>
