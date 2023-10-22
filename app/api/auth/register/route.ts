@@ -29,12 +29,15 @@ export async function POST(req: Request) {
 
     await user.save();
 
-    const token = await new SignJWT({ userName: user.userName })
+    const token = await new SignJWT({
+      userName: user.userName,
+      userId: user._id,
+    })
       .setProtectedHeader({ alg: 'HS256' })
       .setExpirationTime('365d')
       .sign(new TextEncoder().encode(process.env.JWT || ''));
 
-    cookies().set('userToken', token);
+    cookies().set('IncognitoUser', token);
 
     return Response.json({
       success: true,

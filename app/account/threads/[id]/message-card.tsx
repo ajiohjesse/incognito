@@ -31,7 +31,7 @@ const MessageCard = ({
     <Card
       className={cn(
         'relative w-[min(80%,900px)] border-2 border-white shadow-md animate-in zoom-in-50 slide-in-from-bottom-32',
-        sender === user.userName
+        sender === user.userId
           ? 'self-end  border-r-primary'
           : 'border-l-purple-700',
       )}
@@ -40,10 +40,10 @@ const MessageCard = ({
         <CardTitle
           className={cn(
             'text-lg',
-            sender === user.userName ? 'text-primary' : 'text-purple-700',
+            sender === user.userId ? 'text-primary' : 'text-purple-700',
           )}
         >
-          {sender === user.userName ? 'You' : 'Anonymous'}
+          {sender === user.userId ? 'You' : 'Anonymous'}
         </CardTitle>
         <CardDescription className=''>
           Sent: {formatCustomDate(createdAt)}

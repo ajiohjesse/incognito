@@ -1,5 +1,6 @@
 import { useToast } from '@/app/components/ui/use-toast';
 import { QUERY_KEYS } from '@/network/query-keys';
+import { useRouter } from 'next/navigation';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import {
   getSingleMessages,
@@ -35,6 +36,7 @@ export const useSendSingleMessage = (successCallback?: () => void) => {
 export const useSendThreadMessage = (successCallback?: () => void) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: sendThreadMessage,
@@ -49,6 +51,8 @@ export const useSendThreadMessage = (successCallback?: () => void) => {
           description: res.message,
           duration: 1000,
         });
+
+        router.push(`/account/threads/${res.data.threadId}`);
 
         if (successCallback) successCallback();
       } else {

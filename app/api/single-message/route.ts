@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     const { receiver, message } = await req.json();
     const cookieStore = cookies();
-    const token = cookieStore.get('userToken');
+    const token = cookieStore.get('IncognitoUser');
 
     const user = await getUserFromToken(token?.value);
 
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const cookieStore = cookies();
-    const token = cookieStore.get('userToken');
+    const token = cookieStore.get('IncognitoUser');
 
     const user = await getUserFromToken(token?.value);
 

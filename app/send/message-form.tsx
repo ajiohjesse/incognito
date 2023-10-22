@@ -50,7 +50,7 @@ const MessageForm = () => {
       }
 
       threadMessageMutation.mutate({
-        sender: user.userName,
+        sender: user.userId,
         receiver: userName,
         message: message.trim(),
       });
@@ -106,8 +106,8 @@ const MessageForm = () => {
           <InfoIcon className='h-4 w-4' />
           <AlertDescription>
             Sending this message as a thread will create a conversation that you
-            and the recipient can reply to while keeping you anonymous. (You must be
-            logged in)
+            and the recipient can reply to while keeping you anonymous. (You
+            must be logged in)
           </AlertDescription>
         </Alert>
 

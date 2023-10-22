@@ -21,6 +21,7 @@ export const useLogin = () => {
         });
         setUser({
           userName: res.data.userName,
+          userId: res.data._id,
         });
 
         router.refresh();
@@ -50,6 +51,7 @@ export const useRegister = () => {
         });
         setUser({
           userName: res.data.userName,
+          userId: res.data._id
         });
 
         router.refresh();

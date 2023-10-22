@@ -4,6 +4,7 @@ import { atom } from 'recoil';
 
 interface User {
   userName: string;
+  userId: string;
 }
 
 export const userStore = atom<User | null>({
@@ -14,7 +15,7 @@ export const userStore = atom<User | null>({
 });
 
 async function getUser() {
-  const userToken = cookies.get('userToken');
+  const userToken = cookies.get('IncognitoUser');
 
   const user = await getUserFromToken(userToken);
   return user;

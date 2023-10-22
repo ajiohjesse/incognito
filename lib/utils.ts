@@ -14,7 +14,7 @@ export const getUserFromToken = async (token: string | null | undefined) => {
       token,
       new TextEncoder().encode(process.env.JWT || ''),
     );
-    return payload as unknown as { userName: string };
+    return payload as unknown as { userName: string, userId: string };
   } catch (error) {
     return null;
   }

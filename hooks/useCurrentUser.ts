@@ -8,7 +8,7 @@ const useCurrentUser = () => {
   const [user, setUser] = useRecoilState(userStore);
 
   const handleLogout = () => {
-    cookies.remove('userToken');
+    cookies.remove('IncognitoUser');
     setUser(null);
     router.refresh();
   };

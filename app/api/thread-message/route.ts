@@ -79,7 +79,7 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const cookieStore = cookies();
-    const token = cookieStore.get('userToken');
+    const token = cookieStore.get('IncognitoUser');
 
     const user = await getUserFromToken(token?.value);
 
@@ -98,7 +98,7 @@ export async function GET() {
     await connectDB();
 
     const threads = await Thread.find({
-      participants: { $in: [user.userName] },
+      participants: { $in: [user.userId, user.userName] },
     });
 
     return Response.json({

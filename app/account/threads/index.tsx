@@ -1,7 +1,6 @@
 'use client';
 
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
-import { Badge } from '@/app/components/ui/badge';
 import { Button } from '@/app/components/ui/button';
 import {
   Card,
@@ -24,7 +23,7 @@ const Threads = () => {
   if (!user) return null;
 
   const getThreadOwner = (threadMembers: [string, string]) => {
-    if (threadMembers[0] === user.userName) {
+    if (threadMembers[0] === user.userId) {
       return 'You';
     } else {
       return 'Anonymous';
@@ -56,9 +55,9 @@ const Threads = () => {
         ) : threads && threads.length ? (
           threads.map(({ _id, participants, createdAt }, index) => (
             <Card className='relative h-full shadow-md' key={index}>
-              <Badge className='absolute right-4 top-4 bg-primary'>
+              {/* <Badge className='absolute right-4 top-4 bg-primary'>
                 1 new msg
-              </Badge>
+              </Badge> */}
               <CardHeader>
                 <CardTitle className='mb-2 text-lg text-primary'>
                   {getThreadMember(participants, _id)}

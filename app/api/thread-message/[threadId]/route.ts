@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const cookieStore = cookies();
-    const token = cookieStore.get('userToken');
+    const token = cookieStore.get('IncognitoUser');
 
     const threadId = context.params.threadId;
 

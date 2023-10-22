@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  const userCookie = request.cookies.get('userToken');
+  const userCookie = request.cookies.get('IncognitoUser');
 
   if (request.nextUrl.pathname.startsWith('/account')) {
     if (!userCookie) {

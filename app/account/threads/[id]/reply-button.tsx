@@ -30,10 +30,10 @@ const ReplyThreadButton = ({ thread }: Props) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     mutate({
-      sender: user.userName,
+      sender: user.userId,
       receiver:
         thread.participants.find(
-          participant => participant !== user.userName,
+          participant => participant !== user.userId,
         ) || '',
       threadId: thread._id,
       message: message.trim(),
