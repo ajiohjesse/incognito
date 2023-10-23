@@ -13,7 +13,7 @@ type ApiResponse<T = any, E = any> =
     };
 
 interface SingleMessage {
-  reciever: string;
+  receiver: string;
   message: string;
   _id: string;
   createdAt: string;
@@ -22,7 +22,7 @@ interface SingleMessage {
 
 interface ThreadMessage {
   sender: string;
-  reciever: string;
+  receiver: string;
   threadId: string;
   message: string;
   _id: string;

@@ -15,10 +15,12 @@ import { useEffect } from 'react';
 
 interface Props {
   message: ThreadMessage;
+  thread: Thread;
 }
 
 const MessageCard = ({
-  message: { _id, createdAt, message, sender },
+  message: { createdAt, message, sender, receiver },
+  thread: { participants },
 }: Props) => {
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
@@ -43,7 +45,11 @@ const MessageCard = ({
             sender === user.userId ? 'text-primary' : 'text-purple-700',
           )}
         >
-          {sender === user.userId ? 'You' : 'Anonymous'}
+          {sender === user.userId
+            ? 'You'
+            : participants[0] === user.userId
+            ? participants[1]
+            : 'Anonymous'}
         </CardTitle>
         <CardDescription className=''>
           Sent: {formatCustomDate(createdAt)}

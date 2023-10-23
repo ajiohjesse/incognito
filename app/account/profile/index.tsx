@@ -12,6 +12,8 @@ const Profile = () => {
   const [isEditPassword, setIsEditPassword] = useState(false);
   const { user, handleLogout } = useCurrentUser();
 
+  console.log(user)
+
   if (!user) return null;
 
   return (

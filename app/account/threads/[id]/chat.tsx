@@ -22,7 +22,7 @@ const Chat: React.FC<Props> = ({ threadId }) => {
           </>
         ) : data ? (
           data.messages.map((message, index) => (
-            <MessageCard key={index} message={message} />
+            <MessageCard key={index} message={message} thread={data.thread}/>
           ))
         ) : null}
       </div>

@@ -32,9 +32,8 @@ const ReplyThreadButton = ({ thread }: Props) => {
     mutate({
       sender: user.userId,
       receiver:
-        thread.participants.find(
-          participant => participant !== user.userId,
-        ) || '',
+        thread.participants.find(participant => participant !== user.userId) ||
+        '',
       threadId: thread._id,
       message: message.trim(),
     });
@@ -60,7 +59,7 @@ const ReplyThreadButton = ({ thread }: Props) => {
             <Textarea
               placeholder='Enter message'
               id='message'
-              className='min-h-[300px]'
+              className='min-h-[100px]'
               onChange={e => setMessage(e.target.value)}
             />
           </div>

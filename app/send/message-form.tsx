@@ -96,7 +96,7 @@ const MessageForm = () => {
           <label htmlFor='message'>Message</label>
           <Textarea
             placeholder='Type a message'
-            className='min-h-[200px]'
+            className='min-h-[100px]'
             value={message}
             onChange={e => setMessage(e.target.value)}
           />
