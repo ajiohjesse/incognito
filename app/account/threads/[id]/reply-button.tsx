@@ -22,7 +22,11 @@ interface Props {
 const ReplyThreadButton = ({ thread }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const { mutate, isLoading } = useSendThreadMessage(() => setIsOpen(false));
+  const { mutate, isLoading } = useSendThreadMessage(() => {
+    setIsOpen(false);
+    if (window) window.scrollTo(0, document.body.scrollHeight);
+  });
+
   const { user } = useCurrentUser();
 
   if (!user) return null;

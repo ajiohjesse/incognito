@@ -11,7 +11,6 @@ import { Skeleton } from '@/app/components/ui/skeleton';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { cn, formatCustomDate } from '@/lib/utils';
 import { CheckCheck } from 'lucide-react';
-import { useEffect } from 'react';
 
 interface Props {
   message: ThreadMessage;
@@ -19,13 +18,9 @@ interface Props {
 }
 
 const MessageCard = ({
-  message: { createdAt, message, sender, receiver },
+  message: { createdAt, message, sender },
   thread: { participants },
 }: Props) => {
-  useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
-  }, []);
-
   const { user } = useCurrentUser();
   if (!user) return null;
 

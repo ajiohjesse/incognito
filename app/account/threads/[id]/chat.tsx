@@ -2,6 +2,7 @@
 
 import { Skeleton } from '@/app/components/ui/skeleton';
 import { useGetThreadMessages } from '@/network/react-query/message/hooks';
+import { useEffect } from 'react';
 import MessageCard, { MessageCardSkeleton } from './message-card';
 import ReplyThreadButton from './reply-button';
 
@@ -11,6 +12,10 @@ interface Props {
 
 const Chat: React.FC<Props> = ({ threadId }) => {
   const { data, isLoading } = useGetThreadMessages(threadId);
+
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [data]);
 
   return (
     <>
@@ -22,7 +27,7 @@ const Chat: React.FC<Props> = ({ threadId }) => {
           </>
         ) : data ? (
           data.messages.map((message, index) => (
-            <MessageCard key={index} message={message} thread={data.thread}/>
+            <MessageCard key={index} message={message} thread={data.thread} />
           ))
         ) : null}
       </div>
