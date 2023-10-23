@@ -1,3 +1,4 @@
+import novu from '@/lib/novu';
 import { getUserFromToken } from '@/lib/utils';
 import Message from '@/network/Models/message';
 import User from '@/network/Models/user';
@@ -42,6 +43,16 @@ export async function POST(req: Request) {
     });
 
     await newMessage.save();
+
+    novu.trigger('message', {
+      to: {
+        subscriberId: receiver,
+      },
+      payload: {
+        sender: 'Anonymous',
+        messageId: newMessage._id,
+      },
+    });
 
     return Response.json({
       success: true,

@@ -1,3 +1,4 @@
+import novu from '@/lib/novu';
 import { getUserFromToken } from '@/lib/utils';
 import Thread from '@/network/Models/thread';
 import ThreadMessage from '@/network/Models/thread-message';
@@ -10,11 +11,29 @@ export async function POST(req: Request) {
     const { sender, receiver, message, threadId } = await req.json();
     let thread = threadId || null;
 
+    const cookieStore = cookies();
+    const token = cookieStore.get('IncognitoUser');
+    const user = await getUserFromToken(token?.value);
+
+    if (!user) {
+      return Response.json(
+        {
+          success: false,
+          data: null,
+          message: 'Unauthorized',
+          error: user,
+        },
+        { status: 401 },
+      );
+    }
+
     await connectDB();
 
-    const dbReceiver = await User.findOne({
+    const isRecieverUsername = await User.findOne({
       userName: receiver,
     });
+
+    const dbReceiver = isRecieverUsername || (await User.findById(receiver));
 
     if (!dbReceiver) {
       return Response.json({
@@ -60,6 +79,20 @@ export async function POST(req: Request) {
 
     await newMessage.save();
 
+    try {
+      novu.trigger('thread', {
+        to: {
+          subscriberId: dbReceiver.userName,
+        },
+        payload: {
+          sender: isRecieverUsername
+            ? `Anonymous ${sender.slice(-4)}`
+            : user.userName,
+          threadId: thread,
+        },
+      });
+    } catch {}
+
     return Response.json({
       success: true,
       data: newMessage,
@@ -67,6 +100,7 @@ export async function POST(req: Request) {
       error: null,
     });
   } catch (error) {
+    console.log(error);
     return Response.json({
       success: false,
       error,
