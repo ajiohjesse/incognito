@@ -3,12 +3,7 @@
 import BackButton from '@/app/components/back-button';
 import { Alert } from '@/app/components/ui/alert';
 
-const MessageErrorPage = ({
-  error,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) => {
+const MessageErrorPage = () => {
   return (
     <main>
       <div className='container'>
@@ -20,7 +15,7 @@ const MessageErrorPage = ({
           <h1 className='text-2xl font-bold'>An Error Occurred</h1>
 
           <Alert variant='info' className='max-w-[300px]'>
-            {error.message ? error.message : 'Unable to fetch message'}
+            Unable to fetch message
           </Alert>
         </div>
       </div>
