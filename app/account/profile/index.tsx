@@ -1,9 +1,12 @@
 'use client';
 
+import Spinner from '@/app/components/spinner';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
+import { useToast } from '@/app/components/ui/use-toast';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { cn } from '@/lib/utils';
+import { useUpdatePassword } from '@/network/react-query/auth/hooks';
 import { User, X } from 'lucide-react';
 import { useState } from 'react';
 
@@ -11,8 +14,26 @@ const Profile = () => {
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isEditPassword, setIsEditPassword] = useState(false);
   const { user, handleLogout } = useCurrentUser();
+  const [password, setPassword] = useState('');
+  const { toast } = useToast();
+  const { mutate, isLoading } = useUpdatePassword(() => {
+    setPassword('');
+    setIsEditPassword(false);
+  });
 
-  console.log(user)
+  const handleChangePassword = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!password.trim()) {
+      return toast({
+        title: 'Password is empty',
+        description: 'Please enter a new password',
+        duration: 1000,
+      });
+    }
+
+    mutate({ password: password.trim() });
+  };
 
   if (!user) return null;
 
@@ -20,12 +41,12 @@ const Profile = () => {
     <>
       {!isProfileOpen && (
         <button
-          className='fixed right-[10%] top-3 z-[11] rounded-full p-2 transition hover:bg-primary/20 lg:hidden'
+          className='fixed bottom-6 right-20 z-50 grid aspect-square w-[50px] place-items-center rounded-full bg-primary text-white shadow-lg transition hover:scale-110 lg:hidden'
           onClick={() => setProfileOpen(true)}
           type='button'
           title='profile'
         >
-          <User className='text-primary' />
+          <User />
         </button>
       )}
 
@@ -50,7 +71,10 @@ const Profile = () => {
           </div>
 
           {isEditPassword ? (
-            <form className='grid h-fit gap-4 animate-in zoom-in-75'>
+            <form
+              onSubmit={handleChangePassword}
+              className='grid h-fit gap-4 animate-in zoom-in-75'
+            >
               <div className='grid gap-2'>
                 <label htmlFor='password'>Change Password</label>
                 <Input
@@ -58,11 +82,19 @@ const Profile = () => {
                   placeholder='Enter new password'
                   id='password'
                   autoComplete='off'
+                  showPasswordToggle
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                 />
               </div>
 
-              <Button type='submit' size='sm' className='my-2'>
-                Submit
+              <Button
+                type='submit'
+                size='sm'
+                className='my-2'
+                disabled={isLoading}
+              >
+                {isLoading ? <Spinner className='border-white' /> : 'Submit'}
               </Button>
               <Button
                 variant='outline'
@@ -70,6 +102,7 @@ const Profile = () => {
                 size='sm'
                 className='mb-4'
                 onClick={() => setIsEditPassword(false)}
+                disabled={isLoading}
               >
                 Cancel
               </Button>

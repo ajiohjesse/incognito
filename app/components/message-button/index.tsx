@@ -16,7 +16,7 @@ const MessageButton = () => {
   return (
     <Link
       href='/send'
-      className='fixed bottom-12 right-6 grid aspect-square w-[50px] place-items-center rounded-full bg-primary text-white shadow-lg transition hover:scale-110'
+      className='fixed bottom-6 right-6 z-50 grid aspect-square w-[50px] place-items-center rounded-full bg-primary text-white shadow-lg transition hover:scale-110'
     >
       <span className='sr-only'>send a message</span>
       <Send />

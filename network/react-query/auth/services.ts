@@ -27,3 +27,12 @@ export const registerService = async (payload: AuthPayload) => {
 
   return data;
 };
+
+export const updatePasswordService = async (payload: { password: string }) => {
+  const { data } = await axios.put<ApiResponse<User>>(
+    '/api/auth/password',
+    payload,
+  );
+
+  return data;
+};

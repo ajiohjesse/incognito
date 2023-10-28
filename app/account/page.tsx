@@ -6,10 +6,8 @@ const AccountPage = () => {
   return (
     <main>
       <AccountHeader />
-
-      <div className='container grid gap-6 py-4 sm:py-8 lg:grid-cols-[1fr,400px] lg:gap-16'>
+      <div className='container grid gap-6 py-4 pb-12 sm:py-8 lg:grid-cols-[1fr,400px] lg:gap-16'>
         <TabHeaders />
-
         <Profile />
       </div>
     </main>
