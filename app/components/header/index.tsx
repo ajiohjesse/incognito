@@ -1,14 +1,10 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { Drama } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import Notification from '../notification';
 
 const Header = () => {
-  const pathname = usePathname();
-
   return (
     <header className='sticky top-0 z-[10] bg-card shadow-sm'>
       <div className='container flex items-center justify-between gap-8 py-4'>
@@ -20,13 +16,7 @@ const Header = () => {
           Incognito
         </Link>
 
-        <div
-          className={cn(
-            pathname === '/account' ? 'w-[28%] max-w-[150px] lg:w-auto' : '',
-          )}
-        >
-          <Notification />
-        </div>
+        <Notification />
       </div>
     </header>
   );
